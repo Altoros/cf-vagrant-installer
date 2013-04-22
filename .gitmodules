@@ -1,6 +1,9 @@
-[submodule "dea_ng"]
+[submodule "cf-deploy/dea_ng"]
 	path = cf-deploy/dea_ng
 	url = https://github.com/cloudfoundry/dea_ng.git
-[submodule "cloud_controller_ng"]
+[submodule "cf-deploy/uaa"]
+	path = cf-deploy/uaa
+	url = https://github.com/cloudfoundry/uaa.git
+[submodule "cf-deploy/cloud_controller_ng"]
 	path = cf-deploy/cloud_controller_ng
 	url = https://github.com/cloudfoundry/cloud_controller_ng.git
