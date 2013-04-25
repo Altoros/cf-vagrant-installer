@@ -1,0 +1,17 @@
+{
+  "name": "cf",
+  "run_list": [
+    "apt",
+    "git",
+    "dea::packages",
+    "dea::dea",
+    "warden::install",
+    "warden::install_rootfs",
+    "uaa::repositories",
+    "uaa::packages",
+    "uaa::install",
+    "cc_ng::packages",
+    "cc_ng::install",
+    "gorouter::install"
+  ]
+}
