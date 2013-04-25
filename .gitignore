@@ -1,6 +1,7 @@
 *~
 chef/tmp
 .vagrant*
+*.swp
 dea_ng
 uaa
 cloud_controller_ng
