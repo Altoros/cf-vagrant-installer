@@ -1,5 +1,5 @@
 git "/cf-deploy/dea_ng" do
-  repository "git clone https://github.com/cloudfoundry/dea_ng.git"
+  repository "https://github.com/cloudfoundry/dea_ng.git"
   revision "e9562f472da4dc0341fe321aa02d103dc105a6f5"
   action :sync
 end

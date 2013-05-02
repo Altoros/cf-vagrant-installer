@@ -1,5 +1,5 @@
 git "/cf-deploy/uaa" do
-  repository "git clone https://github.com/cloudfoundry/uaa.git"
+  repository "https://github.com/cloudfoundry/uaa.git"
   revision "c4c413412572a7979d7a88314b3a17274950fa72"
   action :sync
 end
