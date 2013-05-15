@@ -9,7 +9,7 @@ logging:
   file: /tmp/dea_ng.log
   level: debug2
 
-local_route: localhost
+local_route: 8.8.8.8
 
 resources:
   memory_mb: 2048

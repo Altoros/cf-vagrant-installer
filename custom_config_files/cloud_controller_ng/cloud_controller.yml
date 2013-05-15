@@ -52,7 +52,7 @@ bulk_api:
 # App staging parameters
 staging:
   # Max duration for staging process
-  max_staging_runtime: 120 # secs
+  max_staging_runtime: 240 # secs
   auth:
     user: zxsfhgjg
     password: ZNVfdase9

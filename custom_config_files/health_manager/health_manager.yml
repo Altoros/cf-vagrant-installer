@@ -28,7 +28,7 @@ bulk_api:
 # WARNING: remove legacy health_manager if disabling shadow mode for hm_next
 shadow_mode: disable
 
-cc_partition: ng
+cc_partition: default
 
 intervals:
 
