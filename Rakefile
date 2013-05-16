@@ -3,13 +3,7 @@ require 'rake'
 namespace :host do
 
   desc "Initialize repos and vagrant vm"
-  task :bootstrap => :create_vm
-
-  task :create_vm => :update_git_submodules do
-    puts "==> Create Vagrant base VM using dea_ng scripts"
-    system "cd dea_ng && bundle install"
-    system "cd dea_ng && rake test_vm"
-  end
+  task :bootstrap => :update_git_submodules
 
   desc "Init git submodules and clone required repos"
   task :update_git_submodules do
@@ -28,7 +22,6 @@ namespace :cf do
   end
 
   def path(component)
-    return '/warden/warden' if component == 'warden'
     File.expand_path("../#{component}", __FILE__)
   end
 
@@ -39,7 +32,11 @@ namespace :cf do
   end
 
   def cf_ruby_components
-    %w(warden cloud_controller_ng dea_ng health_manager)
+    %w(warden/warden cloud_controller_ng dea_ng health_manager)
+  end
+
+  def cf_components
+    cf_ruby_components + %w(uaa gorouter)
   end
 
   desc "bootstrap all cf components"
@@ -51,6 +48,8 @@ namespace :cf do
   task :bundle_install do
     cf_ruby_components.each{|c| bundle_install path(c)}
     system "gem install cf"
+    system "gem install foreman"
+    system "rbenv rehash"
   end
 
   desc "Init cloud_controller_ng database"
@@ -67,21 +66,9 @@ namespace :cf do
   end
 
   desc "Init uaa"
-  task :init_uaa => [:clone_uua_repo, :install_uua_required_pkgs]
-
-  desc "Clone uaa repo"
-  task :clone_uua_repo do
-    Dir.chdir root_path
-    system "git clone git://github.com/cloudfoundry/uaa.git"
-  end
-
-  desc "Install uaa required packages"
-  task :install_uua_required_pkgs do
-    system "sudo apt-get install --yes maven"
-  end
-
-  def cf_components
-    cf_ruby_components + %w(uaa gorouter)
+  task :init_uaa do
+    Dir.chdir root_path + '/uaa'
+    system "mvn package"
   end
 
   desc "copy custom config files"

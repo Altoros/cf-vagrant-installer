@@ -1,9 +1,9 @@
 This project provides a mechanism to automate several tasks to be able to set up a Vagrant VM with the following V2 (NG) Cloud Foundry components:
 * NATS
+* Warden
 * DEA
   * Directory Server
   * File Server
-  * Warden
 * Cloud Controller
 * Gorouter
 * UAA
@@ -11,14 +11,27 @@ This project provides a mechanism to automate several tasks to be able to set up
 
 REQUIREMENTS
 --
-* vagrant = 1.2
-```vagrant --version```
+* Vagrant version 1.2 or higher. Vagrant can be downloaded from http://www.vagrantup.com/. After installing, make sure it is available with the following command: 
+
+```
+vagrant --version
+```
+
+* Berkshelf plugin for Vagrant. After installing Vagrant, run this command to get the plugin: 
+
+```
+vagrant plugin install vagrant-berkshelf
+```
+
 * Ruby 1.9.3
 
-INSTALATION
+INSTALLATION
 --
-It is done in two phases (rake tasks)
+Installation requires three steps in two phases (first on the host machine, then on the guest VM).
+
 * Host
+
+Set up the project for Vagrant.
 
 ```
 # clone the repo
@@ -28,17 +41,23 @@ cd cf-vagrant-installer
 rake host:bootstrap
 ```
 
-This will take a some time... 
+Initialize the Vagrant VM using the default VirtualBox provider. 
 
-Initialize vagrant VM
 ```
 vagrant up
 ```
 
-* Guest (inside Vagrant VM)
+Alternatively, you can use a different Vagrant provider such as the VMware Fusion provider. See the [Vagrant documentation](http://docs.vagrantup.com/v2/providers/index.html) for information on installing and using providers.  
 
 ```
-# Shell into the VM 
+vagrant up --provider=vmware_fusion
+```
+
+* Guest (inside Vagrant VM)
+
+Shell into the guest VM and run the next step of the installation. 
+
+```
 vagrant ssh
 cd /vagrant
 rake cf:bootstrap

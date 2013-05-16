@@ -10,3 +10,9 @@
 [submodule "health_manager"]
 	path = health_manager
 	url = https://github.com/cloudfoundry/health_manager.git
+[submodule "warden"]
+	path = warden
+	url = git://github.com/cloudfoundry/warden.git
+[submodule "uaa"]
+	path = uaa
+	url = https://github.com/cloudfoundry/uaa.git

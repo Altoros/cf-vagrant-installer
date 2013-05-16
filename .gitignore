@@ -2,6 +2,6 @@
 chef/tmp
 .vagrant*
 *.swp
+*.lock
 *#
 .#*
-uaa/
