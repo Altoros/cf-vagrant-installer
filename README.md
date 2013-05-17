@@ -37,6 +37,7 @@ Set up the project for Vagrant.
 # clone the repo
 git clone https://github.com/Altoros/cf-vagrant-installer.git
 cd cf-vagrant-installer
+git submodule update --init
 # Set up host computer
 rake host:bootstrap
 ```
