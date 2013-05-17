@@ -5,13 +5,13 @@ Vagrant.configure("2") do |config|
   config.vm.define "cf-install"
   config.vm.box = "precise64"
   
-  config.vm.provider :virtualbox do |v|
-    config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  config.vm.provider :virtualbox do |v, override|
+    override.vm.box_url = "http://files.vagrantup.com/precise64.box"
     v.customize ["modifyvm", :id, "--memory", "2048"]
   end
 
-  config.vm.provider :vmware_fusion do |v|
-    config.vm.box_url = "http://files.vagrantup.com/precise64_vmware.box"
+  config.vm.provider :vmware_fusion do |v, override|
+    override.vm.box_url = "http://files.vagrantup.com/precise64_vmware.box"
   end
 
   # forward requests to port 8181 on the host to port 80 on the guest, which
