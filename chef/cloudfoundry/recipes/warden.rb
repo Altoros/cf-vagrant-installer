@@ -8,6 +8,10 @@ package "quota" do
   action :install
 end
 
+package "iptables" do
+  action :install
+end
+
 package "apparmor" do
   action :remove
 end

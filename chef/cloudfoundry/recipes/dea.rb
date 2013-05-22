@@ -1,3 +1,7 @@
+package "libcurl4-openssl-dev" do
+  action :install
+end
+
 package "libcurl3-dev" do
   action :install
 end

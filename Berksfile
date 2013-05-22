@@ -11,5 +11,6 @@ cookbook 'ruby_build'
 cookbook 'rbenv', github: 'fnichol/chef-rbenv'
 
 cookbook 'rbenv-alias', path: './chef/rbenv-alias'
+cookbook 'rbenv-sudo', path: './chef/rbenv-sudo'
 cookbook 'cloudfoundry', path: './chef/cloudfoundry'
 

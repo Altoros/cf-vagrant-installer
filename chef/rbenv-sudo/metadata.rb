@@ -1,0 +1,5 @@
+maintainer       "Iron Foundry"
+maintainer_email "luke@bowbak.org"
+license          "Apache 2.0"
+description      "Installs/Configures rbenv-sudo"
+version          "0.0.1"

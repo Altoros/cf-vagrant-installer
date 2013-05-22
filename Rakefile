@@ -58,7 +58,7 @@ namespace :cf do
     Dir.chdir root_path
     system "rm db/cloud_controller.db"
     Dir.chdir root_path + '/cloud_controller_ng'
-    system "sudo -E bundle exec rake db:migrate"
+    system "bundle exec rake db:migrate"
   end
 
   desc "Init gorouter"
@@ -87,7 +87,7 @@ namespace :cf do
   task :setup_warden do
     puts "==> Warden setup"
     Dir.chdir root_path + '/warden/warden'
-    system "sudo bundle exec rake setup:bin[config/test_vm.yml]"
+    system "rbenv sudo bundle exec rake setup:bin[config/test_vm.yml]"
   end
 
   desc "Set target, login and create organization and spaces. CF must be up and running"

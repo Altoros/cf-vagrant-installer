@@ -1,5 +1,5 @@
 #!/bin/bash
 
 cd cloud_controller_ng
-#sudo -E  bundle exec rake db:migrate
-sudo -E bin/cloud_controller -m
+bundle exec rake db:migrate
+bin/cloud_controller -m

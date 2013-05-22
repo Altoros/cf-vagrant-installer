@@ -14,6 +14,11 @@ Vagrant.configure("2") do |config|
     override.vm.box_url = "http://files.vagrantup.com/precise64_vmware.box"
   end
 
+  config.vm.provider :vmware_workstation do |v, override|
+    v.vmx['memsize'] = 2048
+    override.vm.box_url = "http://files.vagrantup.com/precise64_vmware.box"
+  end
+
   config.berkshelf.enabled = true
 
   config.vm.provision :chef_solo do |chef|
@@ -28,6 +33,7 @@ Vagrant.configure("2") do |config|
     chef.add_recipe 'postgresql::server'
     
     chef.add_recipe 'rbenv-alias'
+    chef.add_recipe 'rbenv-sudo'
     chef.add_recipe 'cloudfoundry::warden'
     chef.add_recipe 'cloudfoundry::dea'
     chef.add_recipe 'cloudfoundry::uaa'

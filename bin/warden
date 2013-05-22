@@ -1,4 +1,4 @@
 #!/bin/bash
-cd /vagrant/warden/warden
 
-sudo bundle exec rake warden:start[config/test_vm.yml] 
+cd /vagrant/warden/warden
+rbenv sudo bundle exec rake warden:start[config/test_vm.yml] 
