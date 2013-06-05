@@ -109,17 +109,18 @@ namespace :cf do
   task :instructions do
     puts 
     puts
-    puts "*** Running CF and first steps ***"
-    puts "- Run CF:"
-    puts "    $/vagrant/start.sh"
-    puts "- Wait a moment until UAA finishes starting. You can check it out by: tail /vagrant/logs/uaa.log"
-    puts "- Initialize cf CLI with some default organization, space, etc:"
-    puts "    $rake cf:init_cf_cli"
+    puts "*** Running Cloud Foundry and first steps ***"
+    puts "- Run Cloud Foundry:"
+    puts "    $ /vagrant/start.sh"
+    puts "- Wait until UAA finishes starting. You can check the status by running:"
+    puts "    $ tail -f /vagrant/logs/uaa.log"
+    puts "- Initialize the cf CLI and create a default organization, space, etc:"
+    puts "    $ rake cf:init_cf_cli"
     puts "- Push a very simple ruby sinatra app:"
-    puts "    $cd cd /vagrant/sinatra-test-app/"
-    puts "    $cf push   (follow the defaults)"
+    puts "    $ cd /vagrant/sinatra-test-app/"
+    puts "    $ cf push   (follow the defaults)"
     puts "- Test it: "
-    puts "    $curl -v <your_app_name>.vcap.me  (It should print 'Hello!')"
+    puts "    $ curl -v hello.vcap.me  (It should print 'Hello!')"
     puts 
     puts
   end  
