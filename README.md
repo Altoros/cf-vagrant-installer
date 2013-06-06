@@ -1,4 +1,7 @@
+# Overview
+
 This project provides a mechanism to automate several tasks to be able to set up a Vagrant VM with the following V2 (NG) Cloud Foundry components:
+
 * NATS
 * Warden
 * DEA
@@ -9,15 +12,15 @@ This project provides a mechanism to automate several tasks to be able to set up
 * UAA
 * Health Manager
 
-REQUIREMENTS
---
+## Requirements
+
 * Vagrant version 1.2 or higher. Vagrant can be downloaded from http://www.vagrantup.com/. After installing, make sure it is available with the following command: 
 
 ```
 vagrant --version
 ```
 
-* Berkshelf plugin for Vagrant. After installing Vagrant, run this command to get the plugin: 
+* The Berkshelf plugin for Vagrant. After installing Vagrant, run this command to get the plugin: 
 
 ```
 vagrant plugin install vagrant-berkshelf
@@ -25,35 +28,51 @@ vagrant plugin install vagrant-berkshelf
 
 * Ruby 1.9.3
 
-INSTALLATION
---
+* (Optional) The VMware Fusion or VMware Workstation provider. If you do not have these installed, you can use the default VirtualBox provider. To install:
+    - Fusion: 
+        - vagrant plugin install vagrant-vmware-fusion
+        - vagrant plugin license vagrant-vmware-fusion license.lic
+    - Workstation:
+        - vagrant plugin install vagrant-vmware-workstation
+        - vagrant plugin license vagrant-vmware-workstation license.lic
+    - Reference: http://docs.vagrantup.com/v2/vmware/index.html
+
+## Installation
+
 Installation requires three steps in two phases (first on the host machine, then on the guest VM).
 
-* Host
+### Host
 
 Set up the project for Vagrant.
 
 ```
-# clone the repo
+# Clone The Repo
 git clone https://github.com/Altoros/cf-vagrant-installer.git
 cd cf-vagrant-installer
-# Set up host computer
+
+# Set Up The Host 
 rake host:bootstrap
 ```
 
+### Provision The VM
+#### Using VirtualBox
 Initialize the Vagrant VM using the default VirtualBox provider. 
 
 ```
 vagrant up
 ```
 
-Alternatively, you can use a different Vagrant provider such as the VMware Fusion provider. See the [Vagrant documentation](http://docs.vagrantup.com/v2/providers/index.html) for information on installing and using providers.  
+#### Using VMware Fusion / Workstation
+Alternatively, you can use a different Vagrant provider such as the VMware Fusion or VMware Workstation provider. See the [Vagrant documentation](http://docs.vagrantup.com/v2/providers/index.html) for information on installing and using providers.  
+
+> **Stop!!** If you are going to use the VMware provider, you **must** follow the instructions [here] (vmware/VMware-Instructions.md) first, or the next steps will result in an environment that will not work.
 
 ```
-vagrant up --provider=vmware_fusion
+Fusion: vagrant up --provider=vmware_fusion
+Workstation: vagrant up --provider=vmware_workstation
 ```
 
-* Guest (inside Vagrant VM)
+### Guest (inside Vagrant VM)
 
 Shell into the guest VM and run the next step of the installation. 
 
@@ -63,8 +82,8 @@ cd /vagrant
 rake cf:bootstrap
 ```
 
-RUNNING CF
---
+## Running Cloud Foundry
+
 
 ```
 # shell into the VM if you are not already there
@@ -85,8 +104,8 @@ foreman start
 
 Note: UAA requires lot of dependencies which will download only once.
 
-TEST YOUR CF
---
+## Test Your New Cloud Foundry (v2) Instance
+
 (this has to be done inside the VM)
 * Set up your PaaS account
 
@@ -100,11 +119,11 @@ rake cf:init_cf_cli
 ```
 cd /vagrant/sinatra-test-app
 cf push
-Name> my_app
+Name> hello
 Instances> 1
 Custom startup command> none
 Memory Limit> 256M
-Subdomain> my_app
+Subdomain> hello
 Domain> vcap.me
 Create services for application?> n
 Save configuration?> n
@@ -113,8 +132,8 @@ Save configuration?> n
 Expected output:
 
 ```
-Uploading my_app... OK
-Starting my_app... OK
+Uploading hello... OK
+Starting hello... OK
 -----> Downloaded app package (4.0K)
 Installing ruby.
 -----> Using Ruby version: ruby-1.9.2
@@ -130,7 +149,7 @@ Installing ruby.
        Your bundle is complete! It was installed into ./vendor/bundle
        Cleaning up the bundler cache.
 -----> Uploading staged droplet (21M)
-Checking my_app...
+Checking hello...
   1/1 instances: 1 running
 OK
 ```
@@ -138,7 +157,8 @@ OK
 Check if the app is running and working ok:
 
 ```
-curl my_app.vcap.me
+curl hello.vcap.me
+
 Hello!
 ```
 
@@ -148,10 +168,9 @@ cf apps
 Getting applications in myspace... OK
 
 name    status    usage     url          
-my_app   running   1 x 64M   my_app.vcap.me
+hello   running   1 x 64M   hello.vcap.me
 ```
 
+## Collaborate
 
-Collaborate
---
-You are welcome to contribute via [pull request](https://help.github.com/articles/using-pull-requests)
+You are welcome to contribute via [pull request](https://help.github.com/articles/using-pull-requests).
