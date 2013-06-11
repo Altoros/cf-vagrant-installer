@@ -1,6 +1,6 @@
 site :opscode
 
-cookbook 'apt'
+cookbook 'apt', '1.10.0'
 cookbook 'git'
 cookbook 'sqlite'
 cookbook 'mysql'
