@@ -59,9 +59,31 @@ Now you can follow the documented process to bring the Cloud Foundry environment
 - Workstation: `$ vagrant up --provider=vmware_workstation`
 - Fusion: `$ vagrant up --provider=vmware_fusion`
 
-## Cleaning Up
+## Cleaning And Starting Up
 Once completed, and you have run `rake cf:bootstrap` in the VM, use the following script on the host to "fix" the shared folder mount:
 
 ```
 $ ./vmware/vmware-fix-mounts-workstation.sh
 ```
+When you are back on the guest VM, you will then want to run the foreman script *instead of* ./start.sh
+
+```
+$ foreman start
+```
+
+> At this point you may have running processes on ports that the foreman generated processes want to utilize.
+> It is advisable to disable the cf-ng scripts in order to prevent this, and then restart the guest VM.
+
+> ```
+> $(precise64) sudo rm /etc/init/cf-ng*
+> $(precise64) sudo shutdown -r 'now'
+> ```
+
+> Note that you will have to rerun the mount fixing scripts every time you reboot the machine. From your host terminal, rerun the mount fix scripts.
+
+> ```
+> $(host) ./vmware/vmware-fix-mounts-workstation.sh
+> ```
+> When the VM has booted back up, log back in and try the foreman scripts again.
+
+

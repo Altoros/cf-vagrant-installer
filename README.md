@@ -84,6 +84,7 @@ rake cf:bootstrap
 
 ## Running Cloud Foundry
 
+> If you are using vmware_fusion, please refer to the *Cleaning and Starting Up* section [here] (vmware/VMware-Instructions.md)
 
 ```
 # shell into the VM if you are not already there
