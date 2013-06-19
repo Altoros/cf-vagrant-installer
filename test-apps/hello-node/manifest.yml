@@ -1,0 +1,8 @@
+---
+applications:
+- name: hello-node
+  command: node app.js
+  memory: 256M
+  instances: 1
+  url: hello-node.vcap.me
+  path: .
