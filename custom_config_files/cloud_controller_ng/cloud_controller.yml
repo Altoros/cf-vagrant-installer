@@ -2,18 +2,16 @@
 local_route: 127.0.0.1
 port: 8181
 pid_filename: /tmp/cloud_controller.pid
-nats_uri: nats://127.0.0.1:4222
+message_bus_uri: nats://127.0.0.1:4222
 
-system_domain_organization: vcap.me
-system_domain: vcap.me
-
-external_domain:
-  - api2.vcap.me
-
-app_domains:
-  - vcap.me
+external_domain: api2.vcap.me
 
 bootstrap_admin_email: sre@vmware.com
+
+system_domain_organization: my-org-name
+system_domain: vcap.me
+app_domains:
+  - vcap.me
 
 info:
   name: "vcap"
@@ -66,6 +64,11 @@ quota_definitions:
     non_basic_services_allowed: true
     total_services: 500
     memory_limit: 204800 # 200 GB
+  trial:
+    non_basic_services_allowed: false
+    total_services: 2
+    memory_limit: 512 # 0.5 GB
+    trial_db_allowed: true
 
 default_quota_definition: free
 
@@ -88,3 +91,6 @@ droplets:
     local_root: /tmp
 
 db_encryption_key: "asdfasdfasdf"
+
+trial_db:
+  guid: "78ad16cf-3c22-4427-a982-b9d35d746914"

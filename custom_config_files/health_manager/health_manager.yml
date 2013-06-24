@@ -18,7 +18,7 @@ logging:
 # set this to your dev instance api url
 # the default for the bulk_api host is http://api.vcap.me
 bulk_api:
-  #host: http://api.vcap.me
+  host: http://api.vcap.me:8181
   #host: http://api.cf88.dev.las01.vcsops.com
 
 
@@ -28,7 +28,7 @@ bulk_api:
 # WARNING: remove legacy health_manager if disabling shadow mode for hm_next
 shadow_mode: disable
 
-cc_partition: default
+cc_partition: ng
 
 intervals:
 
