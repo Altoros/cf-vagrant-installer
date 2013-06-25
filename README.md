@@ -86,20 +86,18 @@ foreman start
 
 ## Test Your New Cloud Foundry (v2) Instance
 
-(this has to be done inside the VM)
-* Set up your PaaS account
 
-> CF must be up and running
+* Set up your PaaS account (CF must be up and running)
 
 ```
-cd /vagrant
+cd cf-vagrant-installer/
 rake cf:init_cf_cli
 ```
 
 * Push a very simple sinatra application
 
 ```
-cd /vagrant/sinatra-test-app
+cd cf-vagrant-installer/test-apps/sinatra-test-app
 cf push
 ```
 Leave the default values
@@ -133,7 +131,7 @@ OK
 Check if the app is running and working ok:
 
 ```
-curl hello.vcap.me
+curl hello.vcap.me:8000
 
 Hello from 0.0.0.0:<some assigned port>!
 ```
