@@ -5,7 +5,10 @@ Vagrant.configure("2") do |config|
   config.vm.define "cf-install"
   config.vm.box = "precise64"
   
-  config.vm.network :forwarded_port, guest: 80, host: 8080
+  config.vm.network :forwarded_port, guest: 8181, host: 8181
+  config.vm.network :forwarded_port, guest: 8080, host: 8080
+  config.vm.network :forwarded_port, guest: 80, host: 8000
+  config.vm.network :forwarded_port, guest: 4222, host: 4222
 
   config.vm.provider :virtualbox do |v, override|
     override.vm.box_url = "http://files.vagrantup.com/precise64.box"

@@ -83,6 +83,11 @@ namespace :cf do
       puts "==> #{cmd}"
       system cmd
     end
+    # Prevent localhost binding of CFng, replace CFng local_route with eth0 ip
+    cmd = "sed -i \"s/local_route.*/local_route: $(ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')/\" #{root_path}/cloud_controller_ng/config/cloud_controller.yml"
+    puts "==> Altering CloudController config file"
+    puts "==> #{cmd}"
+    system cmd
   end
 
   desc "set up warden"
