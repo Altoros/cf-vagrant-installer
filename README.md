@@ -99,7 +99,7 @@ rake cf:init_cf_cli
 * Push a very simple sinatra application
 
 ```
-cd /vagrant/sinatra-test-app
+cd /vagrant/test-apps/sinatra-test-app
 cf push
 ```
 Leave the default values
