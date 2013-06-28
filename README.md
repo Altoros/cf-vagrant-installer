@@ -72,6 +72,7 @@ Workstation: vagrant up --provider=vmware_workstation
 vagrant ssh
 
 cd /vagrant
+rake cf:bootstrap
 ./start.sh
 
 # Also, to stop:
