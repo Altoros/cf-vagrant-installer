@@ -71,7 +71,10 @@ Workstation: vagrant up --provider=vmware_workstation
 # shell into the VM if you are not already there
 vagrant ssh
 
+# cd into directory shared with the host
 cd /vagrant
+
+# start Cloud Foundry
 ./start.sh
 
 # Also, to stop:
