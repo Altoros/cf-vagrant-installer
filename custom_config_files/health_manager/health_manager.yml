@@ -18,9 +18,7 @@ logging:
 # set this to your dev instance api url
 # the default for the bulk_api host is http://api.vcap.me
 bulk_api:
-  host: http://api.vcap.me:8181
-  #host: http://api.cf88.dev.las01.vcsops.com
-
+  host: http://api2.vcap.me:8181
 
 # use value "disable" to stop shadowing and start using hm_next for
 # real any other value, as well as default, will result in hm_next
