@@ -1,6 +1,15 @@
 ROOT_FS = "/var/warden/rootfs"
 ROOT_FS_URL = "http://cfstacks.s3.amazonaws.com/lucid64.dev.tgz"
 
+if ["debian", "ubuntu"].include?(node["platform"])
+  if node["kernel"]["release"].end_with? "virtual"
+    package "linux-image-extra" do
+      package_name "linux-image-extra-#{node['kernel']['release']}"
+      action :install
+    end
+  end
+end
+
 package "quota" do
   action :install
 end

@@ -1,5 +1,5 @@
 #!/bin/bash
 
 cd /vagrant/dea_ng
-bin/dea config/dea.yml
+bin/dea /vagrant/custom_config_files/dea_ng/dea.yml
 

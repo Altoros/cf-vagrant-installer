@@ -1,4 +1,4 @@
 #!/bin/bash
 
 cd uaa
-CLOUD_FOUNDRY_CONFIG_PATH=./config/ mvn tomcat:run >> /vagrant/logs/uaa.log
+CLOUD_FOUNDRY_CONFIG_PATH=/vagrant/custom_config_files/uaa/ mvn tomcat:run >> /vagrant/logs/uaa.log

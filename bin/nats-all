@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require "nats/client"
+
+NATS.start do
+  NATS.subscribe('>') { |msg, reply, sub| puts "Msg received on [#{sub}] : '#{msg}'" }
+end
+

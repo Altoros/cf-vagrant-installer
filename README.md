@@ -65,7 +65,9 @@ Workstation: vagrant up --provider=vmware_workstation
 
 ## Running Cloud Foundry
 
-> If you are using vmware_fusion, please refer to the *Cleaning and Starting Up* section [here] (vmware/VMware-Instructions.md)
+Cloud Foundry will be bootstrapped the first time the Vagrant provisioner runs.  After the bootstrap is complete, an upstart configuration will be generated to automatically start Cloud Foundry at boot.
+
+The following commands may be helpful if you wish to manually start and stop Cloud Foundry.
 
 ```
 # shell into the VM if you are not already there

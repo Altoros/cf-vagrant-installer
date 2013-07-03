@@ -1,4 +1,4 @@
 #!/bin/bash
 
 cd /vagrant/dea_ng
-bundle exec rake dir_server:run
+sudo go/bin/runner -conf /vagrant/custom_config_files/dea_ng/dea.yml

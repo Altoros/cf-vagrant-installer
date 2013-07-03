@@ -35,13 +35,8 @@ namespace :cf do
     %w(warden/warden cloud_controller_ng dea_ng health_manager)
   end
 
-  def cf_components
-    cf_ruby_components + %w(uaa gorouter)
-  end
-
   desc "bootstrap all cf components"
-  task :bootstrap => [:copy_custom_conf_files,
-        :bundle_install, :init_uaa,
+  task :bootstrap => [ :bundle_install, :init_uaa,
         :init_cloud_controller_ng, :init_gorouter, 
         :setup_warden, :create_upstart_init_scripts,
         :instructions ]
@@ -75,16 +70,6 @@ namespace :cf do
     system "mvn package -DskipTests"
   end
 
-  desc "copy custom config files"
-  task :copy_custom_conf_files do
-    cf_components.each do |c|
-      cmd = "cp #{root_path}/custom_config_files/#{c}/*.yml #{root_path}/#{c}/config/"
-      puts "==> Copying #{c} config file"
-      puts "==> #{cmd}"
-      system cmd
-    end
-  end
-
   desc "set up warden"
   task :setup_warden do
     puts "==> Warden setup"
@@ -102,7 +87,7 @@ namespace :cf do
   task :create_upstart_init_scripts do
     puts "==> Exporting foreman processes to upstart init config files..."
     Dir.chdir root_path 
-    system "rbenv sudo foreman export upstart /etc/init -a cf-ng --user vagrant"
+    system "rbenv sudo foreman export upstart /etc/init -a cf-ng --user vagrant --template upstart-templates"
   end
 
   desc "Print instructions"

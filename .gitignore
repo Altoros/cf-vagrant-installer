@@ -8,3 +8,5 @@ chef/tmp
 logs/
 db/*.db
 .idea/
+.DS_Store
+tags

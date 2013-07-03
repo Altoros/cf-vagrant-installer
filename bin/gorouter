@@ -1,4 +1,4 @@
 #!/bin/bash
 
 cd /vagrant/gorouter
-sudo ./bin/router -c=config/gorouter.yml
+sudo ./bin/router -c=/vagrant/custom_config_files/gorouter/gorouter.yml
