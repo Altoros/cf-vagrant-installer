@@ -4,5 +4,6 @@ applications:
   command: node app.js
   memory: 256M
   instances: 1
-  url: hello-node.vcap.me
+  host: hello-node
+  domain: vcap.me
   path: .

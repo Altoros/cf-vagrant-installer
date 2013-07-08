@@ -1,4 +1,4 @@
-cf target http://127.0.0.1:8181
+cf target http://api.vcap.me:8181
 cf login --username admin --password password
 cf create-org myorg
 cf create-space myspace
