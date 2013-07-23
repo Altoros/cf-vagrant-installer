@@ -45,9 +45,9 @@ namespace :cf do
 
   desc "bootstrap all cf components"
   task :bootstrap => [ :bundle_install, :init_uaa,
-        :init_cloud_controller_ng, :init_gorouter,
-        :setup_warden, :create_upstart_init_scripts,
-        :instructions ]
+        :init_dea, :init_cloud_controller_ng,
+        :init_gorouter, :setup_warden,
+        :create_upstart_init_scripts, :instructions ]
 
   desc "Install required gems for all ruby components"
   task :bundle_install do
@@ -78,11 +78,17 @@ namespace :cf do
     system "mvn package -DskipTests"
   end
 
+  desc "Init dea"
+  task :init_dea do
+    Dir.chdir root_path + '/dea_ng'
+    system "rbenv sudo bundle exec rake dir_server:install"
+  end
+
   desc "set up warden"
   task :setup_warden do
     puts "==> Warden setup"
     Dir.chdir root_path + '/warden/warden'
-    system "rbenv sudo bundle exec rake setup:bin[config/test_vm.yml]"
+    system "rbenv sudo bundle exec rake setup:bin[/vagrant/custom_config_files/warden/warden/test_vm.yml]"
   end
 
   desc "Set target, login and create organization and spaces. CF must be up and running"
