@@ -15,12 +15,15 @@ ruby_block "update defaults" do
     end
 end
 
+vagrant_target = File.readlink("/vagrant")
+vagrant_device = '.host:/' + File.basename(vagrant_target)
+
 # Delete the vagrant link if vmware guest
 link "/vagrant" do
     action :delete
     only_if { node[:virtualization][:system] == "vmware" }
     only_if { node[:virtualization][:role] == "guest" }
-    only_if do File.readlink("/vagrant") == "/mnt/hgfs/!%vagrant" end
+    only_if { ["/mnt/hgfs/!%vagrant", "/mnt/hgfs/-vagrant"].include?(vagrant_target) }
     notifies :create, "directory[/vagrant]", :immediately
     notifies :mount, "mount[/vagrant]", :immediately
 end
@@ -35,9 +38,8 @@ end
 
 # Mount the file system
 mount "/vagrant" do
-    device '.host:/!%vagrant'
+    device vagrant_device
     fstype "vmhgfs"
     options "rw,noatime,nodev"
     action :nothing
 end
-
