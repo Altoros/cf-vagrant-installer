@@ -14,21 +14,21 @@ This project provides a mechanism to automate several tasks to be able to set up
 
 * Vagrant
     - Download it from http://www.vagrantup.com (version 1.2 or higher)
-    - Install required plugins:  
-     `vagrant plugin install vagrant-berkshelf`  
+    - Install required plugins:
+     `vagrant plugin install vagrant-berkshelf`
      `vagrant plugin install vagrant-omnibus`
 
 * Ruby 1.9.3
 
-* (Optional) The VMware Fusion or VMware Workstation provider.  
+* (Optional) The VMware Fusion or VMware Workstation provider.
 If you do not have these installed, you can use the default VirtualBox provider (http://docs.vagrantup.com/v2/vmware/index.html)
-    - Fusion:      
-      `vagrant plugin install vagrant-vmware-fusion`  
+    - Fusion:
+      `vagrant plugin install vagrant-vmware-fusion`
       `vagrant plugin license vagrant-vmware-fusion license.lic`
 
-    - Workstation:  
-      `vagrant plugin install vagrant-vmware-workstation`  
-      `vagrant plugin license vagrant-vmware-workstation license.lic`  
+    - Workstation:
+      `vagrant plugin install vagrant-vmware-workstation`
+      `vagrant plugin license vagrant-vmware-workstation license.lic`
 
 ## Installation
 
@@ -58,14 +58,14 @@ rake host:bootstrap
 
 ### Provision The VM
 #### Using VirtualBox
-Initialize the Vagrant VM using the default VirtualBox provider. 
+Initialize the Vagrant VM using the default VirtualBox provider.
 
 ```
 vagrant up
 ```
 
 #### Using VMware Fusion / Workstation
-Alternatively, you can use a different Vagrant provider such as the VMware Fusion or VMware Workstation provider. See the [Vagrant documentation](http://docs.vagrantup.com/v2/providers/index.html) for information on installing and using providers.  
+Alternatively, you can use a different Vagrant provider such as the VMware Fusion or VMware Workstation provider. See the [Vagrant documentation](http://docs.vagrantup.com/v2/providers/index.html) for information on installing and using providers.
 
 > **Stop!!** If you are going to use the VMware provider, you **must** follow the instructions [here] (vmware/VMware-Instructions.md) first, or the next steps will result in an environment that will not work.
 
@@ -99,14 +99,14 @@ sudo initctl stop cf
 > This has to be done inside the VM. Also, CF must be up and running
 
 * Set up your PaaS account
-* 
+*
 ```
 cd /vagrant
 rake cf:init_cf_cli
 ```
 
 * Push a very simple sinatra application
-* 
+*
 ```
 cd /vagrant/test/fixtures/apps/sinatra
 cf push
@@ -151,10 +151,24 @@ Use "cf apps" command to list the apps you pushed:
 cf apps
 Getting applications in myspace... OK
 
-name    status    usage     url          
+name    status    usage     url
 hello   running   1 x 64M   hello.vcap.me
 ```
 There is also a node.js sample app in test/fixtures/apps
+
+## Using custom buildpacks
+
+You can add custom buildpacks to cf-vagrant-installer installation.
+For this you need to drop your buildpack to `custom-buildpacks`
+directory and it will be automatically added to CF installation during
+next deployment. If you need to resync you buildpacks content with CF
+deployment you can use `rake cf:setup_custom_buildpacks` in vagrant
+ssh:
+```
+  $ vagrant ssh
+  $ cd /vagrant
+  $ rake cf:setup_custom_buildpacks
+
 
 ## Collaborate
 

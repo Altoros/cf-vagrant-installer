@@ -17,11 +17,11 @@ class TestPushAnApp < CustomMiniTest::Unit::TestCase
 
   def assert_app_is_up(url)
     content = Net::HTTP.get URI(url)
-    assert_match content, /Hello/
+    assert_match /Hello/, content
   end
 
   def delete_all_apps!
-    return if system "cf apps" =~ /No applications/
+    return if `cf apps` =~ /No applications/
     system "yes | cf delete hello hello-node"
   end
 
