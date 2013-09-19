@@ -1,6 +1,10 @@
 # Overview
-
 Now you can test external and your own buildpacks with cf-vagrant-installer
+
+Why this? Why now?
+How does it help?
+Who can benefit?
+What are the use cases?
 
 What buildpacks are?
 (http://docs.cloudfoundry.com/docs/using/deploying-apps/buildpacks.html)
