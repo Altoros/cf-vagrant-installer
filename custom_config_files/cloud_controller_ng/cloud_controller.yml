@@ -1,28 +1,27 @@
 ---
-local_route: 8.8.8.8
+local_route: 192.168.12.34.xip.io
 port: 8181
 pid_filename: /tmp/cloud_controller.pid
 nats_uri: nats://127.0.0.1:4222
 message_bus_uri: nats://127.0.0.1:4222
 
-external_domain: api2.vcap.me
+external_domain:
+  - api.192.168.12.34.xip.io
 
-bootstrap_admin_email: sre@vmware.com
+bootstrap_admin_email: no-one@no-where.com
 
 system_domain_organization: my-org-name
-system_domain: vcap.me
+system_domain: 192.168.12.34.xip.io
 app_domains:
-  - vcap.me
+  - 192.168.12.34.xip.io
 
 info:
-  name: "vcap"
-  build: "2222"
+  name: "Cloudfoundry by https://github.com/Altoros/cf-vagrant-installer"
+  build: "...."
   version: 2
-  support_address: "http://support.cloudfoundry.com"
-  description: "Cloud Foundry sponsored by Pivotal"
+  support_address: "https://github.com/Altoros/cf-vagrant-installer/issues"
+  description: "Cloud Foundry installer sponsored by Altoros"
   api_version: "2.0.0"
-# TODO: put back once json schema is sorted out
-# allow_debug: false
 
 nginx:
   use_nginx: false
@@ -38,7 +37,7 @@ db:
   pool_timeout: 10
 
 uaa:
-  url: "http://localhost:8080/uaa"
+  url: "http://192.168.12.34.xip.io:8080/uaa"
   resource_id: "cloud_controller"
   symmetric_secret: "tokensecret"
 

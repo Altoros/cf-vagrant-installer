@@ -83,32 +83,33 @@ The following commands may be helpful if you wish to manually start and stop Clo
 ```
 # shell into the VM if you are not already there
 vagrant ssh
+cd /vagrant
 
 # Take a look if all Cloud Foundry components are up
-initctl list | grep cf-
+./status.sh
 
 # Start Cloud Foundry
-sudo initctl start cf
+./start.sh
 
 # Also, to stop:
-sudo initctl stop cf
+./stop.sh
 ```
 
 ## Test Your New Cloud Foundry (v2) Instance
 
-> This has to be done inside the VM. Also, CF must be up and running
+> Make sure your CF is up and running
 
 * Set up your PaaS account
 *
 ```
-cd /vagrant
+# from the directory where you cloned the repo
 rake cf:init_cf_cli
 ```
 
 * Push a very simple sinatra application
 *
 ```
-cd /vagrant/test/fixtures/apps/sinatra
+cd test/fixtures/apps/sinatra
 cf push
 ```
 
@@ -116,34 +117,25 @@ cf push
 Expected output:
 
 ```
+Using manifest file manifest.yml
+
+Creating hello... OK
+
+Binding hello.192.168.12.34.xip.io to hello... OK
 Uploading hello... OK
-Starting hello... OK
------> Downloaded app package (4.0K)
-Installing ruby.
------> Using Ruby version: ruby-1.9.2
------> Installing dependencies using Bundler version 1.3.2
-       Running: bundle install --without development:test --path vendor/bundle --binstubs vendor/bundle/bin --deployment
-       Fetching gem metadata from http://rubygems.org/..........
-       Fetching gem metadata from http://rubygems.org/..
-       Installing rack (1.5.1)
-       Installing rack-protection (1.3.2)
-       Installing tilt (1.3.3)
-       Installing sinatra (1.3.4)
-       Using bundler (1.3.2)
-       Your bundle is complete! It was installed into ./vendor/bundle
-       Cleaning up the bundler cache.
------> Uploading staged droplet (21M)
-Checking hello...
-  1/1 instances: 1 running
-OK
+Preparing to start hello... OK
+Checking status of app 'hello'...
+  0 of 1 instances running (1 starting)
+  1 of 1 instances running (1 running) # This may vary
 ```
 
-Check if the app is running and working ok:
+Open a browser and check if the app has been deployed: hello.192.168.12.34.xip.io
+
 
 ```
-curl hello.vcap.me
+Sinatra Test app for CF Vagrant Installer
 
-Hello from 0.0.0.0:<some assigned port>!
+Hello from 0.0.0.0:61007!
 ```
 
 Use "cf apps" command to list the apps you pushed:
@@ -151,8 +143,8 @@ Use "cf apps" command to list the apps you pushed:
 cf apps
 Getting applications in myspace... OK
 
-name    status    usage     url
-hello   running   1 x 64M   hello.vcap.me
+name    status    usage      url
+hello   running   1 x 256M   hello.192.168.12.34.xip.io
 ```
 There is also a node.js sample app in test/fixtures/apps
 

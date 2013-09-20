@@ -3,13 +3,13 @@
 # Base directory for dea, application directories, dea temp files, etc. are all relative to this.
 base_dir: /tmp/dea_ng
 
-domain: vcap.me
+domain: 192.168.12.34.xip.io
 
 logging:
   file: /vagrant/logs/dea_ng.log
   level: debug2
 
-local_route: 8.8.8.8
+local_route: 192.168.12.34.xip.io
 
 resources:
   memory_mb: 2048

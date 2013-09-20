@@ -150,21 +150,18 @@ msg = <<-EOS
 
 *** Running Cloud Foundry and first steps ***
 
-- Run Cloud Foundry:
-  $ sudo initctl start cf
-
-- Wait until UAA finishes starting. You can check the status by running:
-  $ tail -f /vagrant/logs/uaa.log
-
 - Initialize the cf CLI and create a default organization, space, etc:
   $ rake cf:init_cf_cli"
+(If it fails wait a few seconds. The UAA may be loading)
 
 - Push a very simple ruby sinatra app:
-  $ cd /vagrant/test-apps/sinatra-test-app/
-  $ cf push   (follow the defaults)
+  $ cd test/fixture/apps/sinatra
+  $ cf push
 
 - Test it:
-  $ curl -v hello.vcap.me  (It should print 'Hello!')
+  $ curl -v hello.192.168.12.34.xip.io
+  <h3>Sinatra Test app for CF Vagrant Installer</h3>
+      Hello from 0.0.0.0:61007! <br/>
 
 EOS
 puts msg
