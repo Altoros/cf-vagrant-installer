@@ -1,6 +1,6 @@
 # Overview
 
-Now you can test any buildpacks (3rd party, or your own) with cf-vagrant-installer
+Now you can test and distribute any buildpacks (3rd party, or your own) with cf-vagrant-installer
 
 ##### How does it help? 
 It eliminates the need to run full blown Cloud Foundry deployment for trying/testing/validating/distributing your buildpack
