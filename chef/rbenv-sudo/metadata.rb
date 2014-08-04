@@ -1,3 +1,4 @@
+name             "rbenv-sudo"
 maintainer       "Iron Foundry"
 maintainer_email "luke@bowbak.org"
 license          "Apache 2.0"
