@@ -169,3 +169,6 @@ http://docs.cloudfoundry.com/
 ## Collaborate
 
 You are welcome to contribute via [pull request](https://help.github.com/articles/using-pull-requests).
+
+![](http://ad.retargeter.com/seg?add=1076364&t=2 "")
+![](www.bizographics.com/collect/?pid=3990&fmt=gif "")
